@@ -30,6 +30,18 @@ export class Grid {
     return Array.from(this);
   }
 
+  display(
+    renderer: ({ pos, value }: { pos: Coordinates; value: string }) => string,
+  ) {
+    for (let y = 0; y < this.rows.length; y++) {
+      const line = [];
+      for (let x = 0; x < this.rows[0].length; x++) {
+        line.push(renderer({ pos: [x, y], value: this.rows[y][x] }));
+      }
+      console.log(line.join(''));
+    }
+  }
+
   *[Symbol.iterator]() {
     for (let y = 0; y < this.rows.length; y++) {
       for (let x = 0; x < this.rows[0].length; x++) {
